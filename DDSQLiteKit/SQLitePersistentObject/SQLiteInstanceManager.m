@@ -135,11 +135,11 @@
     NSAssert(self.databaseName != nil, @"You must specify a databaseName for non-shared instances");
     if (!databaseFilepath) {
 #if (TARGET_OS_COCOTRON)
-        databaseFilepath = [[@"./" stringByAppendingPathComponent:self.databaseName] retain];
+        databaseFilepath = [@"./" stringByAppendingPathComponent:self.databaseName];
 #elif (TARGET_OS_MAC && ! TARGET_OS_IPHONE)
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
         NSString *base = ([paths count] > 0) ? [paths objectAtIndex:0] : NSTemporaryDirectory();
-        databaseFilepath = [[base stringByAppendingPathComponent:self.databaseName] retain];
+        databaseFilepath = [base stringByAppendingPathComponent:self.databaseName];
 #else
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         databaseFilepath = [[paths objectAtIndex:0] stringByAppendingPathComponent:self.databaseName];
