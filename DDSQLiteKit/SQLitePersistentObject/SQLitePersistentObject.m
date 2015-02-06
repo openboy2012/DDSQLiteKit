@@ -124,6 +124,11 @@ static id findByMethodImp(id self, SEL _cmd, id value)
  */
 - (void)saveInDB;
 
+/**
+ *  runLoop DB Hanlder add by DeJohn Dong
+ */
++ (void)runLoopDBHandler;
+
 @end
 
 NSMutableDictionary *objectMap;

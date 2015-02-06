@@ -91,7 +91,4 @@ typedef enum SQLITE3LockingMode
 - (void)vacuum;
 - (void)executeUpdateSQL:(NSString *)updateSQL;
 
-
-+ (void)runLoopDBHandler;
-
 @end
