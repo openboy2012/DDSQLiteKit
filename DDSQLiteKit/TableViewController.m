@@ -47,13 +47,11 @@ __unused dispatch_queue_t ddkit_db_queue() {
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
-    dispatch_async(ddkit_db_queue(), ^{
+    [Device queryResult:^(id data) {
         [dataList removeAllObjects];
-        [dataList addObjectsFromArray:[Device allObjects]];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    });
+        [dataList addObjectsFromArray:data];
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,6 +128,10 @@ __unused dispatch_queue_t ddkit_db_queue() {
 
 - (IBAction)add:(id)sender{
     [self performSegueWithIdentifier:@"addSegue" sender:@"add"];
+}
+
+- (IBAction)function:(id)sender{
+    [self performSegueWithIdentifier:@"DDSqliteSegue" sender:@"function"];
 }
 
 @end

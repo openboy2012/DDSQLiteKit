@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E334A2B1A84709C0076C92B /* DDSqliteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E334A2A1A84709C0076C92B /* DDSqliteViewController.m */; };
 		8E76A70D1A81CBEC00352063 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76A70C1A81CBEC00352063 /* main.m */; };
 		8E76A7101A81CBEC00352063 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76A70F1A81CBEC00352063 /* AppDelegate.m */; };
 		8E76A7131A81CBEC00352063 /* AddViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76A7121A81CBEC00352063 /* AddViewController.m */; };
@@ -46,6 +47,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E334A291A84709C0076C92B /* DDSqliteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSqliteViewController.h; sourceTree = "<group>"; };
+		8E334A2A1A84709C0076C92B /* DDSqliteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSqliteViewController.m; sourceTree = "<group>"; };
 		8E76A7071A81CBEC00352063 /* DDSQLiteKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDSQLiteKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E76A70B1A81CBEC00352063 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8E76A70C1A81CBEC00352063 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -146,6 +149,8 @@
 				8E76A7641A81CE6400352063 /* TableViewController.m */,
 				8E76A7111A81CBEC00352063 /* AddViewController.h */,
 				8E76A7121A81CBEC00352063 /* AddViewController.m */,
+				8E334A291A84709C0076C92B /* DDSqliteViewController.h */,
+				8E334A2A1A84709C0076C92B /* DDSqliteViewController.m */,
 				8E76A7141A81CBEC00352063 /* Main.storyboard */,
 				8E76A7171A81CBEC00352063 /* Images.xcassets */,
 				8E76A7191A81CBEC00352063 /* LaunchScreen.xib */,
@@ -323,6 +328,7 @@
 			files = (
 				8E76A7511A81CD5000352063 /* NSData-SQLitePersistence.m in Sources */,
 				8E76A75B1A81CD5000352063 /* NSString-SQLitePersistence.m in Sources */,
+				8E334A2B1A84709C0076C92B /* DDSqliteViewController.m in Sources */,
 				8E76A7601A81CD5000352063 /* UIImage-SQLitePersistence.m in Sources */,
 				8E76A7651A81CE6400352063 /* TableViewController.m in Sources */,
 				8E76A7131A81CBEC00352063 /* AddViewController.m in Sources */,
@@ -463,6 +469,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = DDSQLiteKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -474,6 +481,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				INFOPLIST_FILE = DDSQLiteKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -534,6 +542,7 @@
 				8E76A72C1A81CBEC00352063 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8E76A72D1A81CBEC00352063 /* Build configuration list for PBXNativeTarget "DDSQLiteKitTests" */ = {
 			isa = XCConfigurationList;
@@ -542,6 +551,7 @@
 				8E76A72F1A81CBEC00352063 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -27,6 +27,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="SQLitePersistentObject" id="Hq4-vJ-PNn">
+                        <barButtonItem key="leftBarButtonItem" title="Func" id="TmJ-Iv-Jh3">
+                            <connections>
+                                <action selector="function:" destination="zag-N7-OXe" id="U8A-ku-OLS"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Add" id="An0-mt-Q4c">
                             <connections>
                                 <action selector="add:" destination="zag-N7-OXe" id="tJ8-Pf-8Hh"/>
@@ -36,11 +41,12 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <segue destination="ERz-jd-OvV" kind="push" identifier="addSegue" id="Nf9-zG-5Te"/>
+                        <segue destination="YKx-Sg-iTG" kind="push" identifier="DDSqliteSegue" id="ozK-G8-CVl"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78U-3g-0iy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="158" y="210"/>
+            <point key="canvasLocation" x="239" y="205"/>
         </scene>
         <!--Device-->
         <scene sceneID="SQR-qm-M1a">
@@ -125,6 +131,64 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j7b-9N-jyd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-382" y="210"/>
+        </scene>
+        <!--SQLite Function-->
+        <scene sceneID="ecU-xy-iN9">
+            <objects>
+                <viewController id="YKx-Sg-iTG" customClass="DDSqliteViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oHY-BT-4sC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="mSJ-6Z-h23">
+                                <rect key="frame" x="16" y="81" width="288" height="29"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Add"/>
+                                    <segment title="Delete"/>
+                                    <segment title="Update"/>
+                                    <segment title="Query"/>
+                                </segments>
+                                <color key="tintColor" red="0.077236612679999997" green="0.75428044959999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="segmentControlChanged:" destination="YKx-Sg-iTG" eventType="valueChanged" id="S2O-Wb-8b6"/>
+                                </connections>
+                            </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ifn-5i-e0E">
+                                <rect key="frame" x="16" y="130" width="288" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Timer:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="iSv-N0-B6B">
+                                <rect key="frame" x="76" y="171" width="168" height="21"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.93333333330000001" green="0.92941176469999998" blue="0.90588235289999997" alpha="1" colorSpace="deviceRGB"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="SQLite Function" id="CHu-ZV-Fh4">
+                        <barButtonItem key="rightBarButtonItem" title="Clear" id="b78-tf-fpN">
+                            <connections>
+                                <action selector="clearDB:" destination="YKx-Sg-iTG" id="Ny0-jN-Et7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="lblResult" destination="ifn-5i-e0E" id="N3X-iC-UBs"/>
+                        <outlet property="lblTimer" destination="iSv-N0-B6B" id="bRH-l5-Yi0"/>
+                        <outlet property="segmentedControl" destination="mSJ-6Z-h23" id="vWU-7h-swB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MPy-9r-dOJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="557" y="847"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
