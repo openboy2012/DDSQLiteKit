@@ -1853,6 +1853,10 @@ NSMutableArray *checkedTables;
     [[self class] runLoopDBHandler];
 }
 
+- (void)asynDeleteObject{
+    [self asynDeleteObjectCascade:NO];
+}
+
 - (void)asynDeleteObjectCascade:(BOOL)cascade{
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
     [dictionary setObject:self forKey:ddObject];

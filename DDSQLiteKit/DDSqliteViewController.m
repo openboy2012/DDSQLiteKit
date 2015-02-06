@@ -56,13 +56,17 @@
         [self saveDB];
     }else if(self.segmentedControl.selectedSegmentIndex == 3){
         [self queryDB];
+    }else if (self.segmentedControl.selectedSegmentIndex == 1){
+        [self deleteDB];
+    }else if (self.segmentedControl.selectedSegmentIndex == 2){
+        [self updateDB];
     }
 }
 
 #pragma mark - Custom Methods
 
 - (void)refreshTimer{
-    self.lblTimer.text = [NSString stringWithFormat:@"计时:%.2fs",time/100.0];
+    self.lblTimer.text = [NSString stringWithFormat:@"Timer:%.2fs",time/100.0];
     time++;
 }
 
@@ -74,29 +78,54 @@
             Device *p = [[Device alloc] init];
             p.name = [NSString stringWithFormat:@"iPhone %d",i];
             p.model = [NSString stringWithFormat:@"ME2814/%d",i];
-            p.price = @(1999);
+            p.price = @(i);
             [p save];
         }
         dispatch_async(dispatch_get_main_queue(), ^{
             [self timerEnd];
-            self.lblResult.text = [NSString stringWithFormat:@"成功插入了%d条数据",number];
+            self.lblResult.text = [NSString stringWithFormat:@"success add %d datas",number];
         });
     });
 }
 
 - (void)queryDB{
     [self timerStart];
-//    NSDictionary *params = @{@"type":@(DBDataTypeFirstItem),@"criteria":[NSString stringWithFormat:@"WHERE pk = %d", rand()%10000]};
-////    NSDictionary *params = nil;
     [Device queryByCriteria:nil result:^(id data) {
         if([data isKindOfClass:[NSArray class]]){
             NSArray *list = data;
             [self timerEnd];
-            self.lblResult.text = [NSString stringWithFormat:@"成功查询了%lu条数据",[list count]];
+            self.lblResult.text = [NSString stringWithFormat:@"success query %lu datas",[list count]];
         }else{
-//            [self timerEnd];
-//            Post *p = data;
-//            NSLog(@"post's name = %@ & text = %@ pk＝%d",p.id,p.text,p.pk);
+            
+        }
+    }];
+}
+
+- (void)deleteDB{
+    [self timerStart];
+    [Device queryByCriteria:@"WHERE price = '15';" result:^(id data) {
+        if([data isKindOfClass:[NSArray class]]){
+            NSArray *list = data;
+            for (Device *d in list) {
+                [d asynDeleteObjectCascade:YES];
+            }
+            [self timerEnd];
+            self.lblResult.text = [NSString stringWithFormat:@"success delete %lu datas",[list count]];
+        }
+    }];
+}
+
+- (void)updateDB{
+    [self timerStart];
+    [Device queryByCriteria:@"WHERE price = '10';" result:^(id data) {
+        if([data isKindOfClass:[NSArray class]]){
+            NSArray *list = data;
+            for (Device *d in list) {
+                d.price = @(13);
+                [d save];
+            }
+            [self timerEnd];
+            self.lblResult.text = [NSString stringWithFormat:@"success update %lu datas",[list count]];
         }
     }];
 }
