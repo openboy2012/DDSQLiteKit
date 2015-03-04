@@ -10,7 +10,7 @@ Any class that subclasses this class can have their properties automatically per
  SQLite is very good about converting types, so you can search on a number field passing in a number in a string, and can search on a string field by passing in a number. The only limitation we place on the search methods is that we don't allow searching on blobs, which is simply for performance reasons. 
  
 but now, Jeff not work on this library. so I will work on this library.
-this library is thread unsafe in original, I just make it thread-safe use some new methods
+this library is non-safe-thread in original, I just make it thread-safe use some new methods
 
 
 ##Installation
