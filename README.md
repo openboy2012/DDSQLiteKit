@@ -1,6 +1,17 @@
 # DDSQLiteKit
 An ORM kit of object persistence use SQLite
 
+##SQLitePersistentObject
+
+SQLitePersistentObject is an ORM Kit Write by Jeff LaMarche, it's excellent.
+
+Any class that subclasses this class can have their properties automatically persisted into a sqlite database. There are some limits - currently certain property types aren't supported like void *, char *, structs and unions. Anything that doesn't work correctly with Key Value Coding will not work with this. Ordinary scalars (ints, floats, etc) will be converted to NSNumber, as will BOOL.
+ 
+ SQLite is very good about converting types, so you can search on a number field passing in a number in a string, and can search on a string field by passing in a number. The only limitation we place on the search methods is that we don't allow searching on blobs, which is simply for performance reasons. 
+ 
+but now, Jeff not work on this library. so I will work on this library.
+this library is thread unsafe in original, I just make it thread-safe use some new methods
+
 
 ##Installation
 
@@ -13,11 +24,34 @@ Alternatively, you can just drag the files from `SQLitePersistentObject / SQLite
 
 ## Usage
 
+create an object inherit SQLitePersistentObject
+```
+header file:
+#import "SQLitePersistentObject.h"
+
+@interface Device : SQLitePersistentObject
+
+@property (nonatomic, copy) NSString *name;
+@property (nonatomic, copy) NSString *model;
+@property (nonatomic, strong) NSNumber *price;
+
+implementation file:
+#import "Device.h"
+
+@implementation Device
+
+@end
+
+```
+@end
+
+## Methods
+
 
 ## Requirements
 
 - Xcode 6
-- iOS 5.1.1/ OSX 10.8
+- iOS 5.1.1 or Mac OSX 10.8
 
 ## Author
 
