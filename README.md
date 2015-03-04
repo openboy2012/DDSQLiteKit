@@ -35,6 +35,9 @@ header file:
 @property (nonatomic, copy) NSString *model;
 @property (nonatomic, strong) NSNumber *price;
 
+@end
+
+
 implementation file:
 #import "Device.h"
 
@@ -43,10 +46,48 @@ implementation file:
 @end
 
 ```
-@end
 
 ## Methods
+```
+#pragma mark - DeJohn Dong Added Methods
+/**
+ *  Asynchronous add/update an object to db.
+ */
+- (void)save;
 
+/**
+ *  Asynchronous delete an object from db.
+ */
+- (void)asynDeleteObject;
+
+/**
+ *  Asynchronous delete an object and the cascade objects from db.
+ */
+- (void)asynDeleteObjectCascade:(BOOL)cascade;
+
+/**
+ *  Asynchronous Query the object list with criteria from db.
+ *
+ *  @param criteria criteria string
+ *  @param result   result list
+ */
++ (void)queryByCriteria:(NSString *)criteria result:(DBQueryResult)result;
+
+/**
+ *  Asynchronous Query the first object with criteria from db
+ *
+ *  @param criteria criteria string
+ *  @param result   result object
+ */
++ (void)queryFirstItemByCriteria:(NSString *)criteria result:(DBQueryResult)result;
+
+/**
+ *  Asynchronous Query all the objects from db
+ *
+ *  @param result result list
+ */
++ (void)queryResult:(DBQueryResult)result;
+```
 
 ## Requirements
 
