@@ -9,19 +9,6 @@
 #import "TableViewController.h"
 #import "Device.h"
 
-
-
-char * const ddkit_db_queue_name = "com.ddkit.db";
-
-__unused dispatch_queue_t ddkit_db_queue() {
-    static dispatch_queue_t ddkit_db_read_queue;
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        ddkit_db_read_queue = dispatch_queue_create(ddkit_db_queue_name, DISPATCH_QUEUE_SERIAL);
-    });
-    return ddkit_db_read_queue;
-}
-
 @interface TableViewController (){
     NSMutableArray *dataList;
 }
@@ -70,7 +57,7 @@ __unused dispatch_queue_t ddkit_db_queue() {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceCell" forIndexPath:indexPath];
     // Configure the cell...
     Device *d = dataList[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@-[%@]-(￥%@)",d.name, d.model,d.price];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@-[%@]-(￥%@)-%@",d.name, d.model,d.price,d.system];
     return cell;
 }
 

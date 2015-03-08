@@ -13,5 +13,6 @@
 @property (nonatomic, copy) NSString *name;
 @property (nonatomic, copy) NSString *model;
 @property (nonatomic, strong) NSNumber *price;
+@property (nonatomic, copy) NSString *system;
 
 @end

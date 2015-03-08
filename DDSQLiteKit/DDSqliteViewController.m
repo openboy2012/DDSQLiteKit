@@ -19,7 +19,6 @@
     NSTimer *timer;
     NSInteger time;
     
-//    FMDatabase *db;
 }
 
 @property (nonatomic, weak) IBOutlet UILabel *lblTimer;
@@ -39,6 +38,12 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[SQLiteInstanceManager sharedManager] vacuum];
 }
 
 /*
@@ -79,8 +84,10 @@
             p.name = [NSString stringWithFormat:@"iPhone %d",i];
             p.model = [NSString stringWithFormat:@"ME2814/%d",i];
             p.price = @(i);
+            p.system = [NSString stringWithFormat:@"iOS%d",i];
             [p save];
         }
+        [[SQLiteInstanceManager sharedManager] vacuum];
         dispatch_async(dispatch_get_main_queue(), ^{
             [self timerEnd];
             self.lblResult.text = [NSString stringWithFormat:@"success add %d datas",number];
@@ -127,6 +134,7 @@
             [self timerEnd];
             self.lblResult.text = [NSString stringWithFormat:@"success update %lu datas",[list count]];
         }
+        [[SQLiteInstanceManager sharedManager] executeUpdateSQL:@"DELETE FROM Device;"];
     }];
 }
 
