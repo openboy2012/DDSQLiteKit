@@ -11,6 +11,7 @@
 
 @interface AddViewController (){
     Device *device;
+    BOOL pageStillLoading;
 }
 
 @property (nonatomic, weak) IBOutlet UITextField *tfName;
@@ -28,7 +29,7 @@
     if(!device)
         device = [[Device alloc] init];
     else{
-        self.tfModel.text = device.model;
+        self.tfModel.text = device.modelName;
         self.tfName.text = device.name;
         self.tfPrice.text = [NSString stringWithFormat:@"%@",device.price];
     }
@@ -42,11 +43,31 @@
 #pragma mark - Action Methods
 
 - (IBAction)add:(id)sender{
-    device.name = self.tfName.text;
-    device.model = self.tfModel.text;
-    device.price = @([self.tfPrice.text integerValue]);
-    [device save];
-    [self.navigationController popViewControllerAnimated:YES];
+//    device.name = self.tfName.text;
+//    device.modelName = self.tfModel.text;
+//    device.price = @([self.tfPrice.text integerValue]);
+//    [device save];
+//    [self.navigationController popViewControllerAnimated:YES];
+    
+    pageStillLoading = YES;
+    
+    [NSThread detachNewThreadSelector:@selector(loadPageInBackground:) toTarget:self withObject:nil];
+    
+    [self.tfPrice setHidden:NO];
+    
+    while (pageStillLoading) {
+        
+       [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+        
+    }
+    
+    objc_msgSend();
+    
+    [self.tfPrice setHidden:YES];
+}
+
+- (void)loadPageInBackground:(id)sender{
+    pageStillLoading = NO;
 }
 
 @end

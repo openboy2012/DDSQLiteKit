@@ -82,7 +82,7 @@
         for (int i = 0 ; i < number; i++) {
             Device *p = [[Device alloc] init];
             p.name = [NSString stringWithFormat:@"iPhone %d",i];
-            p.model = [NSString stringWithFormat:@"ME2814/%d",i];
+            p.modelName = [NSString stringWithFormat:@"ME2814/%d",i];
             p.price = @(i);
             p.system = [NSString stringWithFormat:@"iOS%d",i];
             [p save];
@@ -106,6 +106,8 @@
             
         }
     }];
+    
+    NSLog(@"array = %@",[Device pairedArraysForProperties:@[@"price",@"system"]]);
 }
 
 - (void)deleteDB{

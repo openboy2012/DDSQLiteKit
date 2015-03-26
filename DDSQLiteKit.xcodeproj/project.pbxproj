@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8E0B672A1AAC7F880020FD73 /* SQLitePersistentObject.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8E0B67291AAC7F880020FD73 /* SQLitePersistentObject.podspec */; };
 		8E334A2B1A84709C0076C92B /* DDSqliteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E334A2A1A84709C0076C92B /* DDSqliteViewController.m */; };
 		8E76A70D1A81CBEC00352063 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76A70C1A81CBEC00352063 /* main.m */; };
 		8E76A7101A81CBEC00352063 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76A70F1A81CBEC00352063 /* AppDelegate.m */; };
@@ -47,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8E0B67291AAC7F880020FD73 /* SQLitePersistentObject.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SQLitePersistentObject.podspec; sourceTree = "<group>"; };
 		8E334A291A84709C0076C92B /* DDSqliteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSqliteViewController.h; sourceTree = "<group>"; };
 		8E334A2A1A84709C0076C92B /* DDSqliteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSqliteViewController.m; sourceTree = "<group>"; };
 		8E76A7071A81CBEC00352063 /* DDSQLiteKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DDSQLiteKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +125,7 @@
 		8E76A6FE1A81CBEC00352063 = {
 			isa = PBXGroup;
 			children = (
+				8E0B67291AAC7F880020FD73 /* SQLitePersistentObject.podspec */,
 				8E76A7611A81CDC900352063 /* libsqlite3.0.dylib */,
 				8E76A7091A81CBEC00352063 /* DDSQLiteKit */,
 				8E76A7231A81CBEC00352063 /* DDSQLiteKitTests */,
@@ -306,6 +309,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E0B672A1AAC7F880020FD73 /* SQLitePersistentObject.podspec in Resources */,
 				8E76A7161A81CBEC00352063 /* Main.storyboard in Resources */,
 				8E76A71B1A81CBEC00352063 /* LaunchScreen.xib in Resources */,
 				8E76A7181A81CBEC00352063 /* Images.xcassets in Resources */,

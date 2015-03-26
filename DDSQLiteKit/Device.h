@@ -11,7 +11,7 @@
 @interface Device : SQLitePersistentObject
 
 @property (nonatomic, copy) NSString *name;
-@property (nonatomic, copy) NSString *model;
+@property (nonatomic, copy) NSString *modelName;
 @property (nonatomic, strong) NSNumber *price;
 @property (nonatomic, copy) NSString *system;
 

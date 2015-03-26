@@ -57,7 +57,7 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DeviceCell" forIndexPath:indexPath];
     // Configure the cell...
     Device *d = dataList[indexPath.row];
-    cell.textLabel.text = [NSString stringWithFormat:@"%@-[%@]-(￥%@)-%@",d.name, d.model,d.price,d.system];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@-[%@]-(￥%@)-%@",d.name, d.name,d.price,d.system];
     return cell;
 }
 
