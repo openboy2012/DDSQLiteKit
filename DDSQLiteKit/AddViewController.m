@@ -43,31 +43,13 @@
 #pragma mark - Action Methods
 
 - (IBAction)add:(id)sender{
-//    device.name = self.tfName.text;
-//    device.modelName = self.tfModel.text;
-//    device.price = @([self.tfPrice.text integerValue]);
-//    [device save];
-//    [self.navigationController popViewControllerAnimated:YES];
-    
-    pageStillLoading = YES;
-    
-    [NSThread detachNewThreadSelector:@selector(loadPageInBackground:) toTarget:self withObject:nil];
-    
-    [self.tfPrice setHidden:NO];
-    
-    while (pageStillLoading) {
-        
-       [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
-        
-    }
-    
-    objc_msgSend();
+    device.name = self.tfName.text;
+    device.modelName = self.tfModel.text;
+    device.price = @([self.tfPrice.text integerValue]);
+    [device save];
+    [self.navigationController popViewControllerAnimated:YES];
     
     [self.tfPrice setHidden:YES];
-}
-
-- (void)loadPageInBackground:(id)sender{
-    pageStillLoading = NO;
 }
 
 @end
