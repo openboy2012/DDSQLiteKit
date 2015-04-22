@@ -106,8 +106,6 @@
             
         }
     }];
-    
-    NSLog(@"array = %@",[Device pairedArraysForProperties:@[@"price",@"system"]]);
 }
 
 - (void)deleteDB{
