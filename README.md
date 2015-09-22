@@ -24,7 +24,7 @@ Alternatively, you can just drag the files from `SQLitePersistentObject / SQLite
 ## Usage
 
 create an object inherit SQLitePersistentObject
-```
+```objective-c
 header file:
 #import "SQLitePersistentObject.h"
 
@@ -47,7 +47,7 @@ implementation file:
 ```
 
 ## Methods
-```
+```objective-c
 #pragma mark - DeJohn Dong Added Methods
 /**
  *  Asynchronous add/update an object to db.
