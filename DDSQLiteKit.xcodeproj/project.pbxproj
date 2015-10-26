@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D8CF35F1BDE776500A50266 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8CF35E1BDE776500A50266 /* libsqlite3.0.tbd */; };
 		8E0B672A1AAC7F880020FD73 /* SQLitePersistentObject.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8E0B67291AAC7F880020FD73 /* SQLitePersistentObject.podspec */; };
 		8E334A2B1A84709C0076C92B /* DDSqliteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E334A2A1A84709C0076C92B /* DDSqliteViewController.m */; };
 		8E76A70D1A81CBEC00352063 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76A70C1A81CBEC00352063 /* main.m */; };
@@ -32,7 +33,6 @@
 		8E76A75E1A81CD5000352063 /* SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76A74C1A81CD5000352063 /* SQLitePersistentObject.m */; };
 		8E76A75F1A81CD5000352063 /* UIColor-SQLitePersistentObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76A74E1A81CD5000352063 /* UIColor-SQLitePersistentObject.m */; };
 		8E76A7601A81CD5000352063 /* UIImage-SQLitePersistence.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76A7501A81CD5000352063 /* UIImage-SQLitePersistence.m */; };
-		8E76A7621A81CDC900352063 /* libsqlite3.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E76A7611A81CDC900352063 /* libsqlite3.0.dylib */; };
 		8E76A7651A81CE6400352063 /* TableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76A7641A81CE6400352063 /* TableViewController.m */; };
 		8E76A7681A81CF9D00352063 /* Device.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76A7671A81CF9D00352063 /* Device.m */; };
 /* End PBXBuildFile section */
@@ -48,6 +48,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D8CF35E1BDE776500A50266 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
 		8E0B67291AAC7F880020FD73 /* SQLitePersistentObject.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SQLitePersistentObject.podspec; sourceTree = "<group>"; };
 		8E334A291A84709C0076C92B /* DDSqliteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSqliteViewController.h; sourceTree = "<group>"; };
 		8E334A2A1A84709C0076C92B /* DDSqliteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSqliteViewController.m; sourceTree = "<group>"; };
@@ -96,7 +97,6 @@
 		8E76A74E1A81CD5000352063 /* UIColor-SQLitePersistentObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-SQLitePersistentObject.m"; sourceTree = "<group>"; };
 		8E76A74F1A81CD5000352063 /* UIImage-SQLitePersistence.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage-SQLitePersistence.h"; sourceTree = "<group>"; };
 		8E76A7501A81CD5000352063 /* UIImage-SQLitePersistence.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage-SQLitePersistence.m"; sourceTree = "<group>"; };
-		8E76A7611A81CDC900352063 /* libsqlite3.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.0.dylib; path = usr/lib/libsqlite3.0.dylib; sourceTree = SDKROOT; };
 		8E76A7631A81CE6400352063 /* TableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewController.h; sourceTree = "<group>"; };
 		8E76A7641A81CE6400352063 /* TableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewController.m; sourceTree = "<group>"; };
 		8E76A7661A81CF9D00352063 /* Device.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Device.h; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E76A7621A81CDC900352063 /* libsqlite3.0.dylib in Frameworks */,
+				0D8CF35F1BDE776500A50266 /* libsqlite3.0.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,8 +125,8 @@
 		8E76A6FE1A81CBEC00352063 = {
 			isa = PBXGroup;
 			children = (
+				0D8CF35E1BDE776500A50266 /* libsqlite3.0.tbd */,
 				8E0B67291AAC7F880020FD73 /* SQLitePersistentObject.podspec */,
-				8E76A7611A81CDC900352063 /* libsqlite3.0.dylib */,
 				8E76A7091A81CBEC00352063 /* DDSQLiteKit */,
 				8E76A7231A81CBEC00352063 /* DDSQLiteKitTests */,
 				8E76A7081A81CBEC00352063 /* Products */,

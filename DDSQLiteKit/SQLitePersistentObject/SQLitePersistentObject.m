@@ -738,7 +738,8 @@ NSMutableArray *checkedTables;
         NSString *attrs = [NSString stringWithUTF8String:property_getAttributes(oneProp)];
         // Read only attributes are assumed to be derived or calculated
         // See http://developer.apple.com/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Articles/chapter_8_section_3.html
-        if ([attrs rangeOfString:@",R,"].location == NSNotFound)
+        if ([attrs rangeOfString:@",R,"].location == NSNotFound &&
+            [attrs rangeOfString:@",R"].location == NSNotFound)
         {
             NSArray *attrParts = [attrs componentsSeparatedByString:@","];
             if (attrParts != nil)
