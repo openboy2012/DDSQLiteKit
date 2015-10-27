@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0D8CF35F1BDE776500A50266 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 0D8CF35E1BDE776500A50266 /* libsqlite3.0.tbd */; };
+		0D8CF3621BDEEEA400A50266 /* Device+DDModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0D8CF3611BDEEEA400A50266 /* Device+DDModel.m */; };
 		8E0B672A1AAC7F880020FD73 /* SQLitePersistentObject.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 8E0B67291AAC7F880020FD73 /* SQLitePersistentObject.podspec */; };
 		8E334A2B1A84709C0076C92B /* DDSqliteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E334A2A1A84709C0076C92B /* DDSqliteViewController.m */; };
 		8E76A70D1A81CBEC00352063 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E76A70C1A81CBEC00352063 /* main.m */; };
@@ -49,6 +50,8 @@
 
 /* Begin PBXFileReference section */
 		0D8CF35E1BDE776500A50266 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
+		0D8CF3601BDEEEA400A50266 /* Device+DDModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Device+DDModel.h"; sourceTree = "<group>"; };
+		0D8CF3611BDEEEA400A50266 /* Device+DDModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "Device+DDModel.m"; sourceTree = "<group>"; };
 		8E0B67291AAC7F880020FD73 /* SQLitePersistentObject.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SQLitePersistentObject.podspec; sourceTree = "<group>"; };
 		8E334A291A84709C0076C92B /* DDSqliteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDSqliteViewController.h; sourceTree = "<group>"; };
 		8E334A2A1A84709C0076C92B /* DDSqliteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DDSqliteViewController.m; sourceTree = "<group>"; };
@@ -160,6 +163,8 @@
 				8E76A70A1A81CBEC00352063 /* Supporting Files */,
 				8E76A7661A81CF9D00352063 /* Device.h */,
 				8E76A7671A81CF9D00352063 /* Device.m */,
+				0D8CF3601BDEEEA400A50266 /* Device+DDModel.h */,
+				0D8CF3611BDEEEA400A50266 /* Device+DDModel.m */,
 			);
 			path = DDSQLiteKit;
 			sourceTree = "<group>";
@@ -273,7 +278,7 @@
 		8E76A6FF1A81CBEC00352063 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = DDKit;
 				TargetAttributes = {
 					8E76A7061A81CBEC00352063 = {
@@ -352,6 +357,7 @@
 				8E76A75C1A81CD5000352063 /* NSString-UppercaseFirst.m in Sources */,
 				8E76A75F1A81CD5000352063 /* UIColor-SQLitePersistentObject.m in Sources */,
 				8E76A7591A81CD5000352063 /* NSString-NumberStuff.m in Sources */,
+				0D8CF3621BDEEEA400A50266 /* Device+DDModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +419,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -477,6 +484,7 @@
 				INFOPLIST_FILE = DDSQLiteKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ddkit.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -489,6 +497,7 @@
 				INFOPLIST_FILE = DDSQLiteKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ddkit.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -507,6 +516,7 @@
 				);
 				INFOPLIST_FILE = DDSQLiteKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ddkit.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DDSQLiteKit.app/DDSQLiteKit";
 			};
@@ -522,6 +532,7 @@
 				);
 				INFOPLIST_FILE = DDSQLiteKitTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ddkit.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DDSQLiteKit.app/DDSQLiteKit";
 			};
