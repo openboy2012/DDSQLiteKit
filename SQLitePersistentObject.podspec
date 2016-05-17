@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
 s.name     = 'SQLitePersistentObject'
-s.version  = '0.3.1'
+s.version  = '0.3.2'
 s.license  = 'MIT'
 s.summary  = 'An ORM kit of object persistence use SQLite'
 s.homepage = 'https://github.com/openboy2012/DDSQLiteKit.git'
