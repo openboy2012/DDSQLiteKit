@@ -20,10 +20,11 @@
 
 #import "SQLiteInstanceManager.h"
 #import "SQLitePersistentObject.h"
-
+#include <pthread.h>
 
 #pragma mark Private Method Declarations
 @interface SQLiteInstanceManager (private)
+
 - (NSString *)databaseFilepath;
 @end
 
@@ -40,8 +41,26 @@
     dispatch_once(&onceToken, ^{
         sharedSQLiteManager = [[self alloc] init];
         sharedSQLiteManager.dbEvents = [[NSMutableArray alloc] initWithCapacity:0];
+        [sharedSQLiteManager createLock];
     });
     return sharedSQLiteManager;
+}
+
+#pragma mark - Safe thread semaphore methods
+
+- (void)createLock
+{
+    pthread_mutex_init(&metux, NULL);
+}
+
+- (void)eventsLock
+{
+    pthread_mutex_lock(&metux);
+}
+
+- (void)eventsUnlock
+{
+    pthread_mutex_unlock(&metux);
 }
 
 #pragma mark -
@@ -53,7 +72,7 @@
     if (first || database == NULL)
     {
         first = NO;
-        if (!sqlite3_open([[self databaseFilepath] UTF8String], &database) == SQLITE_OK)
+        if (!(sqlite3_open([[self databaseFilepath] UTF8String], &database) == SQLITE_OK))
         {
             // Even though the open failed, call close to properly clean up resources.
             NSAssert1(0, @"Failed to open database with message '%s'.", sqlite3_errmsg(database));
@@ -107,21 +126,27 @@
 
 - (void)deleteDatabase
 {
-    if(self.dbEvents.count > 0){
+    if (self.dbEvents.count > 0)
+    {
         dispatch_async(ddkit_db_queue(), ^{
             NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
             [dictionary setObject:self forKey:@"object"];
             SEL methodSEL = @selector(doDeleteDatabase);
             [dictionary setObject:[NSValue valueWithBytes:&methodSEL objCType:@encode(SEL)] forKey:@"performMethod"];
             [dictionary setObject:@"removeAllObjects" forKey:@"params"];
+            [self eventsLock];
             [self.dbEvents insertObject:dictionary atIndex:0];
+            [self eventsUnlock];
         });
         return;
     }
-    [self doDeleteDatabase];
+    dispatch_async(ddkit_db_queue(), ^{
+        [self doDeleteDatabase];
+    });
 }
 
-- (void)doDeleteDatabase{
+- (void)doDeleteDatabase
+{
     NSString *path = [self databaseFilepath];
     NSFileManager *fm = [NSFileManager defaultManager];
     [fm removeItemAtPath:path error:NULL];
@@ -136,16 +161,21 @@
 
 - (void)executeUpdateSQL:(NSString *)updateSQL
 {
-    if([self.dbEvents count] > 0){
+    if ([self.dbEvents count] > 0)
+    {
         NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
         [dictionary setObject:self forKey:@"object"];
         SEL methodSEL = @selector(executeUpdateSQLWithSQLString:);
         [dictionary setObject:[NSValue valueWithBytes:&methodSEL objCType:@encode(SEL)] forKey:@"performMethod"];
         [dictionary setObject:updateSQL?:@"" forKey:@"params"];
+        [self eventsLock];
         [self.dbEvents insertObject:dictionary atIndex:0];
+        [self eventsUnlock];
         return;
     }
-    [self executeUpdateSQLWithSQLString:updateSQL];
+    dispatch_async(ddkit_db_queue(), ^{
+        [self executeUpdateSQLWithSQLString:updateSQL];
+    });
 }
 
 - (void)executeUpdateSQLWithSQLString:(NSString *)sqlString{

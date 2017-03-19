@@ -74,6 +74,7 @@ typedef enum SQLITE3LockingMode
     NSString *databaseFilepath;
     NSString *databaseName;
     sqlite3 *database;
+    pthread_mutex_t metux;
 }
 
 @property (nonatomic, readwrite, copy) NSString *databaseName;
@@ -90,5 +91,8 @@ typedef enum SQLITE3LockingMode
 - (void)deleteDatabase;
 - (void)vacuum;
 - (void)executeUpdateSQL:(NSString *)updateSQL;
+
+- (void)eventsLock;
+- (void)eventsUnlock;
 
 @end

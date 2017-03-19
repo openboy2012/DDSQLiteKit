@@ -165,7 +165,6 @@ NSMutableArray *checkedTables;
     
     if(checkedTables != nil)
         [checkedTables removeAllObjects];
-    
 }
 
 + (NSArray *)indices
@@ -1798,7 +1797,8 @@ NSMutableArray *checkedTables;
     return [SQLiteInstanceManager sharedManager];
 }
 
-+ (NSMutableArray *)dbEvents{
++ (NSMutableArray *)dbEvents
+{
     return [[SQLiteInstanceManager sharedManager] dbEvents];
 }
 
@@ -1861,65 +1861,84 @@ NSMutableArray *checkedTables;
 #define ddBlock @"block"
 #define ddClass @"classType"
 
-- (void)save{
+- (void)save
+{
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
     [dictionary setObject:self forKey:ddObject];
     SEL saveSEL = @selector(saveInDB);
     [dictionary setObject:[NSValue valueWithBytes:&saveSEL objCType:@encode(SEL)] forKey:ddPerformerMethod];
+    [[[self class] manager] eventsLock];
     [[[self class] dbEvents] addObject:dictionary];
+    [[[self class] manager] eventsUnlock];
     [[self class] runLoopDBHandler];
 }
 
-- (void)asynDeleteObject{
+- (void)asynDeleteObject
+{
     [self asynDeleteObjectCascade:NO];
 }
 
-- (void)asynDeleteObjectCascade:(BOOL)cascade{
+- (void)asynDeleteObjectCascade:(BOOL)cascade
+{
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
     [dictionary setObject:self forKey:ddObject];
     SEL saveSEL = @selector(deleteObjectCascade:);
     [dictionary setObject:[NSValue valueWithBytes:&saveSEL objCType:@encode(SEL)] forKey:ddPerformerMethod];
     [dictionary setObject:@(cascade) forKey:ddParameters];
+    [[[self class] manager] eventsLock];
     [[[self class] dbEvents] addObject:dictionary];
+    [[[self class] manager] eventsUnlock];
     [[self class] runLoopDBHandler];
 }
 
-+ (void)queryByCriteria:(NSString *)criteria result:(DBQueryResult)result{
++ (void)queryByCriteria:(NSString *)criteria result:(DBQueryResult)result
+{
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
     [dictionary setObject:[self class] forKey:ddClass];
     [dictionary setObject:criteria?:@"" forKey:ddCriteria];
     [dictionary setObject:@"Query" forKey:ddType];
     [dictionary setObject:result forKey:ddBlock];
+    [[self manager] eventsLock];
     [[self dbEvents] insertObject:dictionary atIndex:0];
+    [[self manager] eventsUnlock];
     [self runLoopDBHandler];
 }
 
-+ (void)queryFirstItemByCriteria:(NSString *)criteria result:(DBQueryResult)result{
++ (void)queryFirstItemByCriteria:(NSString *)criteria result:(DBQueryResult)result
+{
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
     [dictionary setObject:[self class] forKey:ddClass];
     [dictionary setObject:criteria?:@"" forKey:ddCriteria];
     [dictionary setObject:@"QueryFirst" forKey:ddType];
     [dictionary setObject:result forKey:ddBlock];
+    [[self manager] eventsLock];
     [[self dbEvents] insertObject:dictionary atIndex:0];
+    [[self manager] eventsUnlock];
     [self runLoopDBHandler];
 }
 
-+  (void)queryResult:(DBQueryResult)result{
++  (void)queryResult:(DBQueryResult)result
+{
     NSMutableDictionary *dictionary = [[NSMutableDictionary alloc] initWithCapacity:0];
     [dictionary setObject:self forKey:ddClass];
     [dictionary setObject:@"Query" forKey:ddType];
     [dictionary setObject:result forKey:ddBlock];
+    [[self manager] eventsLock];
     [[self dbEvents] insertObject:dictionary atIndex:0];
+    [[self manager] eventsUnlock];
     [self runLoopDBHandler];
 }
 
 #pragma mark - DeJohn Dong's DB RunLoop Methods
 
-+ (void)runLoopDBHandler{
++ (void)runLoopDBHandler
+{
     dispatch_async(ddkit_db_queue(), ^{
-        while ([[self class] dbEvents].count > 0 && [self database]){
+        while ([[self class] dbEvents].count > 0 && [self database])
+        {
             NSDictionary *dict = [[self class] dbEvents][0];
-            if([dict[ddType] isEqualToString:@"Query"]){
+            if ([dict[ddType] isEqualToString:@"Query"])
+            {
                 Class cla = dict[ddClass];
                 NSArray *array = [cla findByCriteria:dict[ddCriteria]?:@""];
                 if(dict[ddBlock]){
@@ -1928,7 +1947,9 @@ NSMutableArray *checkedTables;
                         result(array);
                     });
                 }
-            }else if([dict[ddType] isEqualToString:@"QueryFirst"]){
+            }
+            else if([dict[ddType] isEqualToString:@"QueryFirst"])
+            {
                 id cla = dict[ddClass];
                 __typeof(cla) item = [[cla class] findFirstByCriteria:dict[ddCriteria]?:@""];
                 if(dict[ddBlock]){
@@ -1937,18 +1958,22 @@ NSMutableArray *checkedTables;
                         result(item);
                     });
                 }
-            }else{
+            }
+            else
+            {
                 SEL outSelector;
                 [(NSValue *)[dict objectForKey:ddPerformerMethod] getValue:&outSelector];
                 id target = dict[ddObject];
-                if([target respondsToSelector:outSelector]){
+                if([target respondsToSelector:outSelector])
+                {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Warc-performSelector-leaks"
                     [target performSelector:outSelector withObject:dict[ddParameters]];
 #pragma clang diagnostic pop
                 }
                 if ([dict[ddParameters] isKindOfClass:[NSString class]] &&
-                    [dict[ddParameters] isEqualToString:@"removeAllObjects"]) {
+                    [dict[ddParameters] isEqualToString:@"removeAllObjects"])
+                {
                     [[[self class] dbEvents] removeAllObjects];
                     return;
                 }

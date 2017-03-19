@@ -12,7 +12,7 @@
 
 #import <LocalAuthentication/LocalAuthentication.h>
 
-#define number 30
+#define number 3000
 #define isUseFMDB 0
 
 @interface DDSqliteViewController (){
@@ -70,12 +70,14 @@
 
 #pragma mark - Custom Methods
 
-- (void)refreshTimer{
+- (void)refreshTimer
+{
     self.lblTimer.text = [NSString stringWithFormat:@"Timer:%.2fs",time/100.0];
     time++;
 }
 
-- (void)saveDB{
+- (void)saveDB
+{
     [self timerStart];
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0ul);
     dispatch_async(queue, ^{
@@ -97,14 +99,18 @@
 
 - (void)queryDB{
     [self timerStart];
-    [Device queryByCriteria:nil result:^(id data) {
-        if([data isKindOfClass:[NSArray class]]){
-            NSArray *list = data;
-            [self timerEnd];
-            self.lblResult.text = [NSString stringWithFormat:@"success query %lu datas",[list count]];
-        }else{
-            
-        }
+//    [Device queryByCriteria:nil result:^(id data) {
+//        if([data isKindOfClass:[NSArray class]]){
+//            NSArray *list = data;
+//            [self timerEnd];
+//            self.lblResult.text = [NSString stringWithFormat:@"success query %lu datas",[list count]];
+//        }else{
+//            
+//        }
+//    }];
+    [Device queryFirstItemByCriteria:@"WHERE price = '125';" result:^(id data) {
+        NSLog(@"data is %@", data);
+        [self timerEnd];
     }];
 }
 
@@ -134,7 +140,6 @@
             [self timerEnd];
             self.lblResult.text = [NSString stringWithFormat:@"success update %lu datas",[list count]];
         }
-        [[SQLiteInstanceManager sharedManager] executeUpdateSQL:@"DELETE FROM Device;"];
     }];
 }
 

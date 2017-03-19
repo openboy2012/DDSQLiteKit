@@ -7,7 +7,7 @@
 //
 
 #import "TableViewController.h"
-#import "Device+DDModel.h"
+#import "Device.h"
 
 @interface TableViewController (){
     NSMutableArray *dataList;
