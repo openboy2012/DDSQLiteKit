@@ -46,6 +46,11 @@
     return sharedSQLiteManager;
 }
 
+- (void)dealloc
+{
+    [self destroyLock];
+}
+
 #pragma mark - Safe thread semaphore methods
 
 - (void)createLock
@@ -61,6 +66,11 @@
 - (void)eventsUnlock
 {
     pthread_mutex_unlock(&metux);
+}
+
+- (void)destroyLock
+{
+    pthread_mutex_destroy(&metux);
 }
 
 #pragma mark -
